@@ -1,0 +1,29 @@
+{
+  "name": "soshmeedapi",
+  "version": "1.2.3",
+  "description": "amazing soshmeed api",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fixedOtter/soshmeedAPI.git"
+  },
+  "keywords": [
+    "mongo"
+  ],
+  "author": "fixedOtter",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/fixedOtter/soshmeedAPI/issues"
+  },
+  "homepage": "https://github.com/fixedOtter/soshmeedAPI#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongodb": "^4.8.1",
+    "mongoose": "^6.5.2"
+  }
+}
