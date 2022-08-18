@@ -1,4 +1,5 @@
 module.exports = {
   User: require('./User'),
-  Thought: require('./Thought')
+  Thought: require('./Thought'),
+  Reaction: require('./Reaction')
 }

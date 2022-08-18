@@ -24,7 +24,8 @@ const userSchema = new Schema({
 }, {
   toJSON: {
     virtuals: true // include any virtual properties on a client side request
-  }
+  },
+  id: false // disabling the virtual id being tacked on, since I find it annoying to have two id's
 });
 
 userSchema.virtual('thoughtCount').get(function () {
