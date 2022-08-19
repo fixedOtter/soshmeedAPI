@@ -6,7 +6,6 @@ this is an incredible backend API CRUD setup for a social media site. i might ev
 
 ## Table of Contents
 > * [License](#license)
-> * [Screenshot!](#screenshot)
 > * [Video Demo](#video)
 > * [Installation Instructions](#installation)
 > * [Project Usage](#usage)
@@ -15,11 +14,8 @@ this is an incredible backend API CRUD setup for a social media site. i might ev
 ## License
 This project was licened with GPL v3. [Here's a link  to license information](https://www.gnu.org/licenses/gpl-3.0)
 
-## Screenshot
-![Screenshot of example](assets/screenshot.png)
-
 ## Video
-[Video Link]()
+[Video Link](https://odysee.com/@fixedOtter:f/soshmeedAPI:0)
 
 ## Installation 
 When installing the project, make sure to run this command:
