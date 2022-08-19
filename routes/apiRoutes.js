@@ -77,6 +77,15 @@ apiRouter.post('/thought', async(req, res) => {
   }
 });
 
+// read all thoughts because why not
+apiRouter.get('/thoughts', async(req, res) => {
+  try {
+    res.json(await Thought.find().populate('reactions'));
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 // read thought by id
 apiRouter.get('/thought', async(req, res) => {
   try {
@@ -108,7 +117,7 @@ apiRouter.put('/thought', async(req, res) => {
 apiRouter.delete('/thought', async(req, res) => {
   try {
     const delThought = await Thought.findOneAndDelete({ _id: ObjectId(req.body.thoughtID) }); // deleting thought from req body
-    await React.deleteMany({ _id: { $in: delThought.reactions }}); // deleting the reactions from the thought
+    await Reaction.deleteMany({ _id: { $in: delThought.reactions }}); // deleting the reactions from the thought
     res.send(delThought); // sending back the deleted thought
   } catch (error) {
     res.status(500).json(error);
@@ -116,7 +125,7 @@ apiRouter.delete('/thought', async(req, res) => {
 });
 
 // add friend to user
-apiRouter.put('/friend', async(req, res) => {
+apiRouter.post('/friend', async(req, res) => {
   try {;
     const user = await User.findOne({_id: ObjectId(req.body.userID)});
     user.friends.push(req.body.friendID);
@@ -135,10 +144,31 @@ apiRouter.delete('/friend', async(req, res) => {
     await user.save();
     res.json(user); // sending back updated user
   } catch (error) {
+    res.status(500).json(error);  
+  }
+});
+
+// add reaction to thought
+apiRouter.post('/reaction', async(req, res) => {
+  try {
+    const thought = await Thought.findOne({ _id: ObjectId(req.body.thoughtID) }); // looking for thought by req id
+    const newReaction = await Reaction.create({ body: req.body.body }); // creating the reaction to push
+    thought.reactions.push(newReaction._id); // pushing new thought to the thought's thought array (following the thought schema)
+    thought.save(); // saving changes to thought
+    res.json(thought); // responding with newly updated thought
+  } catch (error) {
     res.status(500).json(error);
   }
 });
 
-
+// delete reaction from thought
+apiRouter.delete('/reaction', async(req, res) => {
+  try {
+    const delReaction = await Reaction.findOneAndDelete({ _id: ObjectId(req.body.reactionID) }); // deleting thought from req body
+    res.send(delReaction); // sending back the deleted thought
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 module.exports = apiRouter;
